@@ -19,7 +19,7 @@ namespace DownloadHostedImages
 
             using (var browser = new IE())
             {
-                browser.GoTo(args[1]);
+                browser.GoTo(args[0]);
 
                 var links = browser.Links.Where(x => x.ClassName == "external");
                 var urls = links.Where(link => link.ChildrenWithTag("img").Any()).Select(link => link.Url).Where(url => url.Contains(".jpg")).ToList();
