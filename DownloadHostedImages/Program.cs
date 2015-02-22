@@ -23,8 +23,10 @@ namespace DownloadHostedImages
 
                 var links = browser.Links.Where(x => x.ClassName == "external");
                 var urls = links.Where(link => link.ChildrenWithTag("img").Any()).Select(link => link.Url).Where(url => url.Contains(".jpg")).ToList();
+                int counter = 0;
                 foreach (var url in urls)
                 {
+                    Console.WriteLine("{0} / {1}", ++counter, urls.Count);
                     var pageUri = new Uri(url);
                     var fileName = pageUri.Segments.Last();
                     if (!File.Exists(fileName))
